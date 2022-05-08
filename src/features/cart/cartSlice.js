@@ -3,7 +3,7 @@ var contentful = require('contentful');
 
 const initialState = {
   products: [],
-  cartItems: JSON.parse(localStorage.getItem('products')),
+  cartItems: [],
   filterButtons: [],
   amount: 0,
   total: 0,
