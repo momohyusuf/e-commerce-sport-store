@@ -7,7 +7,9 @@ function Navbar() {
   const { amount } = useSelector((state) => state.cart);
   return (
     <nav className="navbar">
-      <NavLink to="/">Home</NavLink>
+      <NavLink to="/">
+        <img className="logo" src={require('../images/logo.png')} alt="" />
+      </NavLink>
       <NavLink to="cart">
         {' '}
         <button className="cart-btn">

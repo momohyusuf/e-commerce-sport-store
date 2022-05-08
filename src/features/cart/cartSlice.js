@@ -1,18 +1,31 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+var contentful = require('contentful');
 
 const initialState = {
   products: [],
   cartItems: JSON.parse(localStorage.getItem('products')),
+  filterButtons: [],
   amount: 0,
   total: 0,
   isLoading: true,
 };
 
-export const getProducts = createAsyncThunk('cart/getProducts', () => {
-  return fetch('products.json')
-    .then((response) => response.json())
-    .catch((error) => console.log(error));
+// fetching data from contentful
+const client = contentful.createClient({
+  space: 'fkhe1sr2t377',
+  accessToken: 'LP1rjwzW4itxZEUFuifnvyUBsZnimBDFXYkCSxXxx5E',
 });
+
+export const getProducts = createAsyncThunk('cart/getProducts', () => {
+  return client
+    .getEntries({
+      content_type: 'productsData',
+    })
+    .then((response) => response)
+    .catch(console.error);
+});
+
+// end of contenetful data fetching
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -20,10 +33,21 @@ const cartSlice = createSlice({
   reducers: {
     addItemToCart: (state, action) => {
       const itemId = action.payload;
-      const cartProducts = state.products.items.find(
+      const cartProducts = state.products.find(
         (item) => itemId === item.sys.id
       );
       state.cartItems = [...state.cartItems, cartProducts];
+    },
+    filterItems: (state, { payload }) => {
+      console.log(payload);
+      let filterProducts = state.filterButtons.filter(
+        (item) => item.fields.category === payload
+      );
+      if (payload === 'all') {
+        return state.products;
+      } else {
+        state.products = filterProducts;
+      }
     },
     clearCart: (state) => {
       state.cartItems = [];
@@ -71,17 +95,20 @@ const cartSlice = createSlice({
       state.isLoading = true;
     },
     [getProducts.fulfilled]: (state, action) => {
-      state.products = action.payload;
+      const { items } = action.payload;
+      state.products = items;
+      state.filterButtons = items;
       state.isLoading = false;
     },
     [getProducts.rejected]: (state) => {
-      state.isLoading = true;
+      state.isLoading = false;
     },
   },
 });
 
 export const {
   addItemToCart,
+  filterItems,
   clearCart,
   removeItem,
   increaseQty,

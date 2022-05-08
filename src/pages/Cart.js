@@ -28,25 +28,19 @@ function Cart() {
           {cartItems.map((item) => {
             const {
               sys: { id },
-              fields: {
-                amount,
-                title,
-                price,
-                image: {
-                  fields: {
-                    file: { url },
-                  },
-                },
-              },
+              fields: { title, price, amount, images },
             } = item;
             return (
               <article className="cart-item" key={id}>
                 <div>
                   <div className="cart-item--image--container">
-                    <img src={url} alt={title} />
+                    <img src={images[0].fields.file.url} alt={title} />
                   </div>
                   <h5>{title}</h5>
-                  <p>${price}</p>
+                  <p>
+                    <span>&#8358;</span>{' '}
+                    {new Intl.NumberFormat('en-US').format(price)}
+                  </p>
                   <button className="delete-btn">
                     {' '}
                     <AiFillDelete
@@ -83,7 +77,10 @@ function Cart() {
 
           <div className="cart-total">
             <h5>Total</h5>
-            <p>${total.toFixed(2)}</p>
+            <p>
+              <span>&#8358;</span>
+              {new Intl.NumberFormat('en-US').format(total)}
+            </p>
           </div>
           <div className="clear-cart">
             <button onClick={() => dispatch(clearCart())}>Clear cart</button>
