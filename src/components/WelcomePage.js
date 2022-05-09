@@ -7,7 +7,7 @@ function WelcomePage({ toggle }) {
       {' '}
       <section className="welcome-page">
         <div>
-          <h1>Welcome to Fit-in store</h1>
+          <h1>Welcome to FIT-IN store</h1>
           <p>Nigeria's number one retail store for all your sports wears</p>
           <button className="show-products-btn" onClick={toggle}>
             Shop Now <AiOutlineArrowRight className="forward-icon" />

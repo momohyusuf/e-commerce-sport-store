@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Cart from './pages/Cart';
+import Favorites from './pages/Favorites';
 import ProductDetails from './pages/productDetails';
 import ShareLayout from './components/ShareLayout';
 import Error from './pages/Error';
@@ -21,9 +22,12 @@ function App() {
 
   useEffect(() => {
     dispatch(cartTotalItems());
-    dispatch(getProducts());
     dispatch(saveToLocalStorage());
   }, [cartItems]);
+
+  useEffect(() => {
+    dispatch(getProducts());
+  }, []);
 
   function toggleWelcomePage() {
     setWelcomePage((prevalue) => false);
@@ -38,6 +42,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="cart" element={<Cart />} />
         <Route path="/:productId" element={<ProductDetails />} />
+        <Route path="favourites" element={<Favorites />} />
         <Route path="*" element={<Error />} />
       </Route>
     </Routes>

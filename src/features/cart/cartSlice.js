@@ -5,6 +5,7 @@ const initialState = {
   products: [],
   cartItems: [],
   filterButtons: [],
+  favouriteItems: [],
   amount: 0,
   total: 0,
   isLoading: true,
@@ -26,6 +27,13 @@ export const getProducts = createAsyncThunk('cart/getProducts', () => {
 });
 
 // end of contenetful data fetching
+
+// function checkLocalStorage() {
+//   let items = JSON.parse(localStorage.getItem('products'));
+// console.log;
+// }
+
+// checkLocalStorage();
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -86,6 +94,18 @@ const cartSlice = createSlice({
       state.total = total;
     },
 
+    addToFavourites: (state, { payload }) => {
+      let favouriteProducts = state.products.find((item) => {
+        return payload === item.sys.id;
+      });
+      state.favouriteItems = [...state.favouriteItems, favouriteProducts];
+    },
+
+    removeFromFavourites: (state, { payload }) => {
+      state.favouriteItems = state.favouriteItems.filter(
+        (item) => item.sys.id !== payload
+      );
+    },
     saveToLocalStorage: (state) => {
       localStorage.setItem('products', JSON.stringify(state.cartItems));
     },
@@ -116,5 +136,7 @@ export const {
   cartTotalItems,
   saveToLocalStorage,
   getItemsFromStorage,
+  addToFavourites,
+  removeFromFavourites,
 } = cartSlice.actions;
 export default cartSlice.reducer;
