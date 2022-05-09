@@ -22,7 +22,7 @@ function Cart() {
   }
   return (
     <main className="section">
-      hello world
+      <h4>Your cart</h4>
       <section className="cart-container">
         <div className="cart-section">
           {cartItems.map((item) => {

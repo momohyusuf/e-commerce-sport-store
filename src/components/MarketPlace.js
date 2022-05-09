@@ -13,7 +13,7 @@ function MarketPlace() {
   const { products, cartItems, favouriteItems } = useSelector(
     (state) => state.cart
   );
-  console.log(favouriteItems);
+
   const dispatch = useDispatch();
 
   return (
@@ -35,6 +35,17 @@ function MarketPlace() {
             e.target.innerText = `item already in cart`;
             return;
           }
+        }
+
+        function addTofav(e) {
+          let itemExist = favouriteItems.find((element) => {
+            return element.sys.id === id;
+          });
+
+          if (itemExist) {
+            return;
+          }
+          dispatch(addToFavourites(id));
         }
 
         return (
@@ -69,7 +80,7 @@ function MarketPlace() {
                   <MdOutlineFavoriteBorder
                     className="add-to-favouriteIcon"
                     title="Add to Favourites"
-                    onClick={() => dispatch(addToFavourites(id))}
+                    onClick={addTofav}
                   />
                   <MdFavorite
                     className="add-to-favouriteIcon"

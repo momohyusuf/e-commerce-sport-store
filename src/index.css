@@ -537,3 +537,35 @@ img {
 .product-qualities ul {
   padding: 0.3em 2em;
 }
+
+/* favorites section styling */
+.back-arrow {
+  position: absolute;
+  top: 10em;
+  left: 2em;
+  background-color: var(--clr-black);
+  width: 5em;
+  text-align: center;
+}
+.back-arrow-icon {
+  color: white;
+}
+.back-arrow:hover,
+.back-arrow-icon:hover {
+  background-color: var(--clr-white);
+  color: var(--clr-black);
+  transition: var(--transition);
+  border: 2px solid var(--clr-black);
+}
+.favourite-container {
+  margin-top: 12em;
+  margin-inline: 2em;
+}
+
+.favourite-container img {
+  margin-top: 2em;
+  max-width: 25em;
+}
+.favourite-container p {
+  max-width: 30em;
+}

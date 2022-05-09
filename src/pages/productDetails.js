@@ -6,7 +6,7 @@ import {
   BsFillArrowRightCircleFill,
   BsFillArrowLeftCircleFill,
 } from 'react-icons/bs';
-
+import { MdOutlineArrowBackIosNew } from 'react-icons/md';
 function ProductDetails() {
   const [value, setValue] = useState(0);
   const { products } = useSelector((state) => state.cart);
@@ -19,53 +19,61 @@ function ProductDetails() {
   } = productInformation;
 
   return (
-    <section className="product-details">
-      <div className="product-detail-image-container">
-        <img src={images[value].fields.file.url} alt={title} />
-        <BsFillArrowLeftCircleFill
-          className="prev-icon"
-          onClick={() =>
-            setValue((prevalue) => {
-              if (prevalue === 0) {
-                prevalue = images.length;
-              }
-              return prevalue - 1;
-            })
-          }
-        />
-        <BsFillArrowRightCircleFill
-          className="next-icon"
-          onClick={() =>
-            setValue((prevalue) => {
-              if (prevalue === images.length - 1) {
-                prevalue = 0;
-              }
-              return prevalue + 1;
-            })
-          }
-        />
-      </div>
-
-      <div>
-        <h3 className="product-details-title">{title}</h3>
-        <h5 className="product-details-price">
-          {' '}
-          <span>&#8358;</span>
-          {new Intl.NumberFormat('en-US').format(price)}
-        </h5>
-        <p>{details}</p>
-        <div className="product-qualities">
-          <h5>Product Qualities</h5>
-          {qualities.map((item, index) => {
-            return (
-              <ul key={index}>
-                <li>{item}</li>
-              </ul>
-            );
-          })}
+    <>
+      <Link to="/">
+        <div className="back-arrow">
+          <MdOutlineArrowBackIosNew className="back-arrow-icon" />
         </div>
-      </div>
-    </section>
+      </Link>
+
+      <section className="product-details">
+        <div className="product-detail-image-container">
+          <img src={images[value].fields.file.url} alt={title} />
+          <BsFillArrowLeftCircleFill
+            className="prev-icon"
+            onClick={() =>
+              setValue((prevalue) => {
+                if (prevalue === 0) {
+                  prevalue = images.length;
+                }
+                return prevalue - 1;
+              })
+            }
+          />
+          <BsFillArrowRightCircleFill
+            className="next-icon"
+            onClick={() =>
+              setValue((prevalue) => {
+                if (prevalue === images.length - 1) {
+                  prevalue = 0;
+                }
+                return prevalue + 1;
+              })
+            }
+          />
+        </div>
+
+        <div>
+          <h3 className="product-details-title">{title}</h3>
+          <h5 className="product-details-price">
+            {' '}
+            <span>&#8358;</span>
+            {new Intl.NumberFormat('en-US').format(price)}
+          </h5>
+          <p>{details}</p>
+          <div className="product-qualities">
+            <h5>Product Qualities</h5>
+            {qualities.map((item, index) => {
+              return (
+                <ul key={index}>
+                  <li>{item}</li>
+                </ul>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
 
