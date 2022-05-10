@@ -18,7 +18,7 @@ import WelcomePage from './components/WelcomePage';
 function App() {
   const [welcomePage, setWelcomePage] = useState(true);
   const dispatch = useDispatch();
-  const { cartItems } = useSelector((state) => state.cart);
+  const { cartItems, favouriteItems } = useSelector((state) => state.cart);
 
   useEffect(() => {
     dispatch(cartTotalItems());
@@ -26,9 +26,12 @@ function App() {
   }, [cartItems]);
 
   useEffect(() => {
+    dispatch(saveToLocalStorage());
+  }, [favouriteItems]);
+
+  useEffect(() => {
     dispatch(getProducts());
   }, []);
-
   function toggleWelcomePage() {
     setWelcomePage((prevalue) => false);
   }

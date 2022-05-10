@@ -3,9 +3,9 @@ var contentful = require('contentful');
 
 const initialState = {
   products: [],
-  cartItems: [],
+  cartItems: JSON.parse(localStorage.getItem('products')) || [],
   filterButtons: [],
-  favouriteItems: [],
+  favouriteItems: JSON.parse(localStorage.getItem('favourites')) || [],
   amount: 0,
   total: 0,
   isLoading: true,
@@ -27,13 +27,6 @@ export const getProducts = createAsyncThunk('cart/getProducts', () => {
 });
 
 // end of contenetful data fetching
-
-// function checkLocalStorage() {
-//   let items = JSON.parse(localStorage.getItem('products'));
-// console.log;
-// }
-
-// checkLocalStorage();
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -108,6 +101,7 @@ const cartSlice = createSlice({
     },
     saveToLocalStorage: (state) => {
       localStorage.setItem('products', JSON.stringify(state.cartItems));
+      localStorage.setItem('favourites', JSON.stringify(state.favouriteItems));
     },
   },
   extraReducers: {

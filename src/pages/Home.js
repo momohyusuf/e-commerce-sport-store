@@ -21,7 +21,6 @@ function Home() {
 
   const categories = [
     ...new Set(filterButtons.map((item) => item.fields.category)),
-    'all',
   ];
 
   return (

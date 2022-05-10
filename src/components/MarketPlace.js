@@ -76,18 +76,18 @@ function MarketPlace() {
                   </span>
                 </button>
 
-                <button className="favourite-btn">
-                  <MdOutlineFavoriteBorder
+                <div className="favourite-btn">
+                  <MdFavorite
                     className="add-to-favouriteIcon"
                     title="Add to Favourites"
                     onClick={addTofav}
                   />
                   <MdFavorite
-                    className="add-to-favouriteIcon"
+                    className="remove-from-favouriteIcon"
                     title="Remove from Favourites"
                     onClick={() => dispatch(removeFromFavourites(id))}
                   />
-                </button>
+                </div>
               </div>
             </div>
           </article>

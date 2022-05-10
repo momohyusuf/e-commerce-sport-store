@@ -2,6 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { GrAdd } from 'react-icons/gr';
 import { AiOutlineMinus, AiFillDelete } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
+import { MdOutlineArrowBackIosNew } from 'react-icons/md';
 import {
   clearCart,
   removeItem,
@@ -15,13 +17,18 @@ function Cart() {
   console.log(cartItems);
   if (cartItems.length <= 0) {
     return (
-      <div>
-        <h1>Your Cart is empty</h1>
+      <div className="empty-cart">
+        <h2>Your Cart is empty 😥</h2>
       </div>
     );
   }
   return (
-    <main className="section">
+    <main className="cart-main">
+      <Link to="/">
+        <div className="back-arrow">
+          <MdOutlineArrowBackIosNew className="back-arrow-icon" />
+        </div>
+      </Link>
       <h4>Your cart</h4>
       <section className="cart-container">
         <div className="cart-section">
@@ -32,22 +39,24 @@ function Cart() {
             } = item;
             return (
               <article className="cart-item" key={id}>
-                <div>
+                <div className="cart-header">
                   <div className="cart-item--image--container">
                     <img src={images[0].fields.file.url} alt={title} />
                   </div>
-                  <h5>{title}</h5>
-                  <p>
-                    <span>&#8358;</span>{' '}
-                    {new Intl.NumberFormat('en-US').format(price)}
-                  </p>
-                  <button className="delete-btn">
-                    {' '}
-                    <AiFillDelete
-                      onClick={() => dispatch(removeItem(id))}
-                      className="delete-icon"
-                    />{' '}
-                  </button>
+                  <div>
+                    <h5>{title}</h5>
+                    <p>
+                      <span>&#8358;</span>{' '}
+                      {new Intl.NumberFormat('en-US').format(price)}
+                    </p>
+                    <button className="delete-btn">
+                      {' '}
+                      <AiFillDelete
+                        onClick={() => dispatch(removeItem(id))}
+                        className="delete-icon"
+                      />{' '}
+                    </button>
+                  </div>
                 </div>
 
                 <div className="quantity-container">
@@ -82,8 +91,14 @@ function Cart() {
               {new Intl.NumberFormat('en-US').format(total)}
             </p>
           </div>
-          <div className="clear-cart">
-            <button onClick={() => dispatch(clearCart())}>Clear cart</button>
+          <div>
+            <button
+              className="clear-cart"
+              onClick={() => dispatch(clearCart())}
+            >
+              Clear cart
+            </button>
+            <button className="checkout-btn">Proceed to checkout</button>
           </div>
         </div>
       </section>

@@ -19,7 +19,7 @@ function Navbar() {
           {' '}
           <button className="cart-btn">
             {amount > 0 && (
-              <span className="cart-items" style={{ color: 'white' }}>
+              <span className="cart-items-count" style={{ color: 'white' }}>
                 {amount}
               </span>
             )}
@@ -31,7 +31,7 @@ function Navbar() {
           {' '}
           <button className="cart-btn">
             {favouriteItems.length > 0 && (
-              <span className="cart-items" style={{ color: 'white' }}>
+              <span className="cart-items-count" style={{ color: 'white' }}>
                 {favouriteItems.length}
               </span>
             )}
