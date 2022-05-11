@@ -46,7 +46,6 @@ function CheckoutPage() {
       );
     e.target.innerText = 'Thank you for your order';
     dispatch(clearCart());
-    window.location.reload();
   };
 
   console.log(form);
@@ -97,7 +96,7 @@ function CheckoutPage() {
 
       <form ref={form} onSubmit={sendEmail}>
         <h4>please enter your details below</h4>
-        <label htmlFor="userName">Name:</label>
+        <label htmlFor="userName">Name:</label> <br />
         <input
           type="text"
           placeholder="Enter your name"
@@ -117,7 +116,8 @@ function CheckoutPage() {
           onChange={handleInput}
           id="userAddress"
           required
-        />
+        />{' '}
+        <br />
         <label htmlFor="userNunber">Phone number:</label>
         <input
           type="number"
@@ -127,12 +127,13 @@ function CheckoutPage() {
           onChange={handleInput}
           id="userNumber"
           required
-        />
+        />{' '}
+        <br />
         {userData.userNumber < 11 ||
           (userData.userNumber > 11 && (
             <p>number must not be less than 11 digit</p>
           ))}
-        <label htmlFor="userMail">Email:</label>
+        <label htmlFor="userMail">Email:</label> <br />
         <input
           type="email"
           placeholder="Enter your mail"
