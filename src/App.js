@@ -14,6 +14,7 @@ import {
 } from './features/cart/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import WelcomePage from './components/WelcomePage';
+import CheckoutPage from './pages/CheckoutPage';
 
 function App() {
   const [welcomePage, setWelcomePage] = useState(true);
@@ -46,6 +47,7 @@ function App() {
         <Route path="cart" element={<Cart />} />
         <Route path="/:productId" element={<ProductDetails />} />
         <Route path="favourites" element={<Favorites />} />
+        <Route path="/cart/checkout" element={<CheckoutPage />} />
         <Route path="*" element={<Error />} />
       </Route>
     </Routes>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { GrAdd } from 'react-icons/gr';
 import { AiOutlineMinus, AiFillDelete } from 'react-icons/ai';
@@ -14,7 +14,7 @@ import {
 function Cart() {
   const { cartItems, total } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-  console.log(cartItems);
+
   if (cartItems.length <= 0) {
     return (
       <div className="empty-cart">
@@ -22,6 +22,7 @@ function Cart() {
       </div>
     );
   }
+
   return (
     <main className="cart-main">
       <Link to="/">
@@ -98,7 +99,10 @@ function Cart() {
             >
               Clear cart
             </button>
-            <button className="checkout-btn">Proceed to checkout</button>
+            <Link to="/cart/checkout">
+              {' '}
+              <button className="checkout-btn">Proceed to checkout</button>
+            </Link>
           </div>
         </div>
       </section>

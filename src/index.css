@@ -609,3 +609,37 @@ img {
 .favourite-container p {
   max-width: 30em;
 }
+
+/* checkout page styling */
+
+.checkout-page {
+  margin-top: 10em;
+  padding: 2em;
+  max-width: 30em;
+}
+.checkout-items {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--clr-black);
+}
+.checkout-page input {
+  width: 90%;
+  padding: 0.5em 1em;
+  margin: 1em 0;
+}
+.checkout-page input:invalid {
+  border: 2px solid var(--clr-red-dark);
+}
+.checkout-page input:valid {
+  border: 2px solid var(--clr-green-dark);
+}
+.confirm-order-btn {
+  background-color: rgb(20, 195, 20);
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  color: var(--clr-white);
+  cursor: pointer;
+  margin-top: 1em;
+  border: 0;
+  transition: var(--transition);
+}
