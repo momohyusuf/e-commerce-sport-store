@@ -53,9 +53,9 @@ Owner of the website should be able to:
 - Contentful CMS
 - 
 ### What I learned
-was very challenging expecially working with the css grid and try to make it responsive
-how to work with Contentful Cms and react
-using Email.js to get users input and also send auto reply email
+- was very challenging expecially working with the css grid and try to make it responsive
+- how to work with Contentful Cms, react and redux to managge changing state values.
+- using Email.js to get users input and also send auto reply email
 
 ### Challenges
 
@@ -64,13 +64,11 @@ Not being able to get the order summary sent along with the user details to the 
 
 ### Continued development
 
-still learning JavaScript and solidifying my Css Knowlegde
-will hope to learn a backend languaage to give me the ability to perform some operations on the website without needing a third party library.
-
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+- still learning JavaScript and solidifying my Css Knowlegde
+- learn a backend language to give me the ability to perform some operations on the website without needing a third party library.
 
 ### Useful resources
-Contentful documantation
+Contentful documentation
 
 
 ## Author
