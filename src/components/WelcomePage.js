@@ -24,7 +24,7 @@ function WelcomePage({ toggle }) {
         </p>
       </div>
       <div>
-        <h3 className="patners">Major patners</h3>
+        <h3 className="patners">Major partners</h3>
         <div className="patners-logos">
           {' '}
           <img src={require('../images/nike_icon.png')} alt="" />
